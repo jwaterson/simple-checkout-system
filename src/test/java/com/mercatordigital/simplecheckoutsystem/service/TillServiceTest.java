@@ -23,7 +23,7 @@ class TillServiceTest {
     private final TillService tillService = new TillService();
 
     @Test
-    void calculateTotal_ValidCart_ReturnsCorrectTotal() {
+    void shouldCalculateTotalCorrectly_WhenValidCartProvided() {
         // Arrange
         var cart = new CartDTO(List.of(APPLE, ORANGE, APPLE));
 
@@ -37,7 +37,7 @@ class TillServiceTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    void calculateTotal_EmptyCart_ThrowsIllegalArgumentException(List<Product> products) {
+    void shouldThrowIllegalArgumentException_WhenNullOrEmptyProductListProvided(List<Product> products) {
         assertThrows(IllegalArgumentException.class, () -> new CartDTO(products));
     }
 

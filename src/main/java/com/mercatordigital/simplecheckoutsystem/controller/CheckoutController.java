@@ -25,6 +25,7 @@ public class CheckoutController {
     @PostMapping
     public PriceResponseDTO checkout(@Validated @RequestBody CartDTO cart) {
         final BigDecimal total = tillService.calculateTotal(cart);
-        return new PriceResponseDTO(PriceFormatter.convert(total));
+        final String priceString = PriceFormatter.convert(total);
+        return new PriceResponseDTO(priceString);
     }
 }
