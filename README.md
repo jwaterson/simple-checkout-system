@@ -7,7 +7,7 @@ A simple checkout system to calculate the total price of items in a cart, includ
 - Apply further multi-buy offers dynamically.
 
 ## Getting Started
-### Prereqs
+### Prerequisites
 - Java 21
 - Maven 3.5 or higher recommended (tested with Maven 3.5.6)
 
