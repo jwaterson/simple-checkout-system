@@ -15,7 +15,7 @@ public abstract class MultiBuy implements Offer {
 
     protected abstract int getMultiplier();
 
-    public MultiBuy(String productNames) {
+    protected MultiBuy(String productNames) {
         if (productNames == null || productNames.isBlank()) {
             throw new IllegalArgumentException("The product names cannot be null or blank");
         }

@@ -35,7 +35,7 @@ class TillServiceTest {
     }
 
     @ParameterizedTest
-    @MethodSource({"getValidInputs", "getValidMultiBuyInputs"})
+    @MethodSource({"getValidInputs", "getValidMultiBuyOfferInputs"})
     void shouldCalculateTotalCorrectly_WhenValidCartProvided(List<Product> products, BigDecimal expectedTotal) {
         // Arrange
         var cart = new CartDTO(products);
@@ -47,6 +47,7 @@ class TillServiceTest {
         assertEquals(expectedTotal, total);
     }
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> getValidInputs() {
         return Stream.of(
                 Arguments.of(List.of(APPLE), APPLE.getPrice()),
@@ -59,9 +60,11 @@ class TillServiceTest {
         );
     }
 
-    public static Stream<Arguments> getValidMultiBuyInputs() {
+    @SuppressWarnings("unused")
+    private static Stream<Arguments> getValidMultiBuyOfferInputs() {
         return Stream.of(
-                Arguments.of(List.of(ORANGE, ORANGE, ORANGE), ORANGE.getPrice().multiply(BigDecimal.valueOf(2)))
+                Arguments.of(List.of(ORANGE, ORANGE, ORANGE), ORANGE.getPrice().multiply(BigDecimal.valueOf(2))),
+                Arguments.of(List.of(APPLE, APPLE), APPLE.getPrice())
         );
     }
 
