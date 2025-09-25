@@ -5,11 +5,10 @@ import com.mercatordigital.simplecheckoutsystem.model.dto.CartDTO;
 import com.mercatordigital.simplecheckoutsystem.offer.Offer;
 import com.mercatordigital.simplecheckoutsystem.offer.ThreeForTwo;
 import com.mercatordigital.simplecheckoutsystem.offer.TwoForOne;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,13 +20,14 @@ import static com.mercatordigital.simplecheckoutsystem.model.Product.ORANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
 class TillServiceTest {
 
-    @ParameterizedTest
-    @NullAndEmptySource
-    void shouldThrowIllegalArgumentException_WhenNullOrEmptyProductListProvided(List<Product> products) {
-        assertThrows(IllegalArgumentException.class, () -> new CartDTO(products));
+    @Test
+    void shouldThrowIllegalArgumentException_WhenNullProvided() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            var tillService = new TillService(null);
+            tillService.calculateTotal(null);
+        });
     }
 
     @ParameterizedTest

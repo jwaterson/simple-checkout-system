@@ -21,6 +21,9 @@ public class TillService {
     }
 
     public BigDecimal calculateTotal(CartDTO cart) {
+        if (cart == null || cart.products() == null || cart.products().isEmpty()) {
+            throw new IllegalArgumentException("The cart cannot be null or empty");
+        }
         Map<Product, Long> productCountMap = cart.products()
                 .stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
