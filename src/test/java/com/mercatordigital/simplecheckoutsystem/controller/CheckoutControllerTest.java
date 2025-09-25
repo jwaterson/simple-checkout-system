@@ -84,7 +84,7 @@ class CheckoutControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    public Stream<Arguments> getInvalidInputs() {
+    private Stream<Arguments> getInvalidInputs() {
         return Stream.of(
                 Arguments.of(List.of("appl")),
                 Arguments.of(List.of("appel")),
