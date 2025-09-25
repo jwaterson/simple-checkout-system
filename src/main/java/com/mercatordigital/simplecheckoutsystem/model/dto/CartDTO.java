@@ -1,4 +1,6 @@
-package com.mercatordigital.simplecheckoutsystem.model;
+package com.mercatordigital.simplecheckoutsystem.model.dto;
+
+import com.mercatordigital.simplecheckoutsystem.model.Product;
 
 import java.util.List;
 import java.util.Objects;

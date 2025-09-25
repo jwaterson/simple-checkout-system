@@ -1,8 +1,9 @@
 package com.mercatordigital.simplecheckoutsystem.controller;
 
-import com.mercatordigital.simplecheckoutsystem.model.CartDTO;
-import com.mercatordigital.simplecheckoutsystem.model.PriceResponseDTO;
+import com.mercatordigital.simplecheckoutsystem.model.dto.CartDTO;
+import com.mercatordigital.simplecheckoutsystem.model.dto.PriceResponseDTO;
 import com.mercatordigital.simplecheckoutsystem.service.TillService;
+import com.mercatordigital.simplecheckoutsystem.util.PriceFormatter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,6 @@ public class CheckoutController {
     @PostMapping
     public PriceResponseDTO checkout(@Validated @RequestBody CartDTO cart) {
         final BigDecimal total = tillService.calculateTotal(cart);
-        return new PriceResponseDTO(total.toPlainString());
+        return new PriceResponseDTO(PriceFormatter.convert(total));
     }
 }
