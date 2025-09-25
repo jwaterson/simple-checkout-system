@@ -27,17 +27,15 @@ public class TillService {
 
         return productCountMap.entrySet()
                 .stream()
-                .map(this::getPrice)
+                .map(entry -> getPrice(entry.getKey(), entry.getValue()))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-
     }
 
-    private BigDecimal getPrice(Map.Entry<Product, Long> entry) {
+    private BigDecimal getPrice(Product product, long quantity) {
         return offers.stream()
-                .filter(offer -> offer.getPredicate().test(entry.getKey()))
-                .map(offer -> offer.apply(entry.getKey(), entry.getValue()))
+                .filter(offer -> offer.getPredicate().test(product))
+                .map(offer -> offer.apply(product, quantity))
                 .min(BigDecimal::compareTo)
-                .orElse(entry.getKey().getPrice()
-                        .multiply(BigDecimal.valueOf(entry.getValue())));
+                .orElse(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
     }
 }

@@ -61,7 +61,7 @@ class TillServiceTest {
     void shouldCalculateTotalCorrectly_WhenValidMultiBuyOfferProvided(List<Product> products, BigDecimal expectedTotal) {
         // Arrange
         List<Offer> offers = List.of(
-                new ThreeForTwo("ORANGE"),
+                new ThreeForTwo("ORANGE,APPLE"),
                 new TwoForOne("APPLE"));
 
         var tillService = new TillService(offers);
