@@ -1,0 +1,14 @@
+package com.mercatordigital.simplecheckoutsystem.service;
+
+import com.mercatordigital.simplecheckoutsystem.model.CartDTO;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+
+@Service
+public class TillService {
+
+    public BigDecimal calculateTotal(CartDTO cart) {
+        return BigDecimal.ZERO; //todo placeholder
+    }
+}
